@@ -1,0 +1,26 @@
+@import "./typography.scss";
+@import "./../settings/colors.scss";
+@import "./../settings/breakpoints.scss";
+body {
+    margin: 0;
+    font-family: 'Scope One', serif;
+    overflow: hidden;
+}
+
+button {
+    background: transparent;
+    border: none;
+}
+
+svg {
+    fill: currentColor;
+}
+
+mat-sidenav-container.mat-drawer-container {
+    background-color: $background-color;
+}
+
+button.mat-raised-button {
+    line-height: 45px;
+    padding: 0 25px;
+}

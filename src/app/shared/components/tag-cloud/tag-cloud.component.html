@@ -1,0 +1,5 @@
+<div *ngIf="tags" class="tags">
+  <div *ngFor="let tag of tags; let i = index" class="tag">
+    <mat-chip>{{ tag.name }}</mat-chip>
+  </div>
+</div>

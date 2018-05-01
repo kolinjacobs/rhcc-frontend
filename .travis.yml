@@ -1,0 +1,52 @@
+#.travis.yml
+sudo: required
+dist: trusty
+
+language: node_js
+node_js:
+  - "6.10.1"
+
+branches:
+  only:
+    - master
+    - develop
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+script:
+  - ng lint
+  - ng test --watch=false --cc
+  - codecov -f coverage/*.json
+  - ng e2e
+
+before_deploy:
+  - npm run build-prod-ngsw
+  - gfp
+
+deploy:
+  - provider: firebase
+    skip_cleanup: true
+    token: $FIREBASE_TOKEN
+    project: contenta-angular-dev
+    on:
+      branch: develop
+  - provider: firebase
+    skip_cleanup: true
+    token: $FIREBASE_TOKEN_PROD
+    project: contenta-angular
+    on:
+      branch: master
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change

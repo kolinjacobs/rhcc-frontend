@@ -1,0 +1,12 @@
+<mat-toolbar class="header-toolbar mat-elevation-z6">
+  <button class="sidenav-toggle" aria-label="Toggle Sidebar" (click)="toggleSidenav()">
+      <mat-icon class="menu-icon" [svgIcon]="'sort'"></mat-icon>
+  </button>
+  <span class="app-title">{{ title }}</span>
+  <div class="desktop-menu">
+    <a [routerLink]="''" mat-button><mat-icon [svgIcon]="'umami-logo'"></mat-icon><span class="app-title">{{ title }}</span></a>
+    <span class="spacer"></span>
+    <a *ngFor="let menu_item of menu; let i = index" class="menu-item" mat-button [routerLink]="[menu_item.url]">{{ menu_item.name }}</a>
+    <a href="https://github.com/contentacms/contenta_angular" target="_blank" rel="noopener" mat-button class="menu-item">Github</a>
+  </div>
+</mat-toolbar>
