@@ -1,0 +1,49 @@
+<div class="country-card-container" *ngIf="showing">
+  <div class="country-card" [class.mission-card]="selectedMission">
+    <div class="country-card-column country-card-column-left">
+      <div>
+        <div class="country-card-title">
+          <div class="country-card-title-info">
+            <h1>{{selectedMission ?  selectedMission?.title : country.name}}</h1>
+            <h3>{{selectedMission ?  selectedMission?.subheadline : country.continent}}</h3>
+          </div>
+          <img *ngIf="country.flag_image && !selectedMission" [src]="country.flag_image">
+        </div>
+        <p>{{selectedMission ?  selectedMission?.body?.value : country.description}}</p>
+      </div>
+      <div *ngIf="selectedMission?.mission_image || country.country_image"  class="country-card-main-image"
+           [ngStyle]="{'background-image': 'url(' + mainImage + ')'}">
+           <!--[style.background-image]="'url('+ selectedMission?.mission_image ? selectedMission?.mission_image : country.country_image +')'"-->
+
+        <!--<img [src]="selectedMission?.mission_image ? selectedMission.mission_image : country.country_image" class="country-image">-->
+      </div>
+    </div>
+    <div class="country-card-column country-card-column-right">
+      <div class="close-btn" (click)="toggleCard()"></div>
+      <div class="country-card-stats">
+        <div class="country-card-stats-header">
+          <h1 *ngIf="!selectedMission">stats</h1>
+          <p *ngIf="!selectedMission">{{country.stats}}<br>line three</p>
+          <h1 class="missions-header">{{selectedMission ? 'LATEST UPDATES' : 'missions'}}</h1>
+        </div>
+        <div *ngIf="!selectedMission" class="missions-container">
+          <div *ngFor="let mission of country.missions" class="item" (click)="loadMission(mission)">
+              <h1>{{mission.title}}</h1>
+              <h2>{{mission.subheadline}}</h2>
+              <p>Last Updated July 3rd, 2018</p>
+          </div>
+        </div>
+        <div *ngIf="selectedMission && selectedMission.updates" class="missions-container">
+          <div *ngFor="let update of selectedMission.updates" class="item">
+            <div *ngIf="selectedMission">
+              <p>Bob Smith</p>
+              <span>3 hours ago</span>
+              <p>{{update.attributes.body.value}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="country-card-background" (click)="toggleCard()"></div>
+</div>

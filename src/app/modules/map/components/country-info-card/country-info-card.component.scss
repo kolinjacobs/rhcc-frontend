@@ -1,0 +1,232 @@
+
+
+.country-card-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.country-card {
+  width: 1200px;
+  height: 750px;
+  background-color: white;
+  display: flex;
+  flex-flow: row;
+  z-index: 2;
+  box-shadow: 4px 5px 16px 6px rgba(0,0,0,0.80);
+}
+
+.country-card-background {
+  background: rgba(37,52,59,0.85);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.country-card-column {
+  width: 50%;
+  height: 100%;
+  display: block;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  .country-card-main-image {
+    overflow: hidden;
+    height: 465px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .country-card-stats {
+    padding: 20px 40px 40px 40px;
+    .country-card-stats-header {
+      height: 164px;
+      h1 {
+        color: white;
+        font-weight: 300;
+        font-size: 24px;
+        color: #BBBDBF;
+        text-align: left;
+        text-transform: uppercase;
+      }
+      .missions-header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid grey;
+      }
+      p {
+        font-size: 14px;
+        color: #FFFFFF;
+      }
+      h3 {
+        color: white;
+      }
+    }
+    .missions-container {
+      height: 525px;
+      overflow: scroll;
+
+      .item {
+        padding: 25px 0px 25px 25px;
+        height: 75px;
+        border-bottom: 1px solid grey;
+        h1 {
+          font-size: 24px;
+          color: #FFFFFF;
+          text-align: left;
+          &:after {
+            height: 20px;
+            width: 20px;
+            display: block;
+            content: '';
+            background-color: #F1AE22;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-image: url(/src/assets/icons/map-marker-alt.svg);
+            float: left;
+            margin-left: -25px;
+            margin-top: 7px;
+          }
+        }
+        h2 {
+          font-weight: 300;
+          font-size: 18px;
+          color: #588EA5;
+          text-align: left;
+          margin: 5px 0px
+        }
+        p {
+          font-weight: bold;
+          font-size: 12px;
+          color: #BBBDBF;
+          text-align: left;
+          margin: 0px;
+        }
+      }
+    }
+
+  }
+
+  .country-card-title {
+    padding: 40px 40px 0px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      height: 75px;
+      width: 115px;
+    }
+  }
+
+}
+.country-card-column-right {
+  background-color: #2B414E;
+  border: 1px solid white;
+  border-left: 0px;
+  transition: 1s width;
+}
+
+.country-card-column-left {
+  height: calc( 100% + 2px );
+  transition: 1s width;
+  p {
+    margin: 0px 40px;
+  }
+}
+.country-card-title-info {
+
+}
+
+
+.country-image {
+  width: 100%;
+}
+
+.mission-card {
+  .country-card-column-left {
+    width: 70%;
+    transition: 1s width;
+    .country-card-title-info {
+      h1 {
+        font-size: 48px;
+        color: #25343B;
+        letter-spacing: -0.03px;
+      }
+      h3 {
+        font-weight: bold;
+        font-size: 24px;
+        color: #588EA5;
+        text-align: left;
+      }
+
+    }
+  }
+  .country-card-column-right {
+    width: 30%;
+    transition: 1s width;
+
+    .missions-container {
+      height: 635px;
+      .item {
+        padding-left: 0px;
+        p {
+          font-size: 16px;
+          color: #FFFFFF;
+          letter-spacing: -0.03px;
+          font-weight: 500;
+        }
+        span {
+          font-style: italic;
+          color: #588EA5;
+        }
+        h1 {
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+    .country-card-stats-header {
+      height: 55px;
+    }
+  }
+}
+
+.close-btn {
+  width: 45px;
+  height: 45px;
+  position: fixed;
+  background-color: #F1AE22;
+  border: 5px solid white;
+  border-radius: 45px;
+  align-self: flex-end;
+  margin-top: -20px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:before {
+    height: 20px;
+    width: 20px;
+    display: block;
+    content: '';
+    background-color: #25343B;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-image: url(/src/assets/icons/times.svg);
+  }
+}
