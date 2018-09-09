@@ -1,3 +1,3 @@
 export const environment = {
-  httpUrl: 'http://dev-rolling-hills.pantheonsite.io'
+  httpUrl: 'http://test-rolling-hills.pantheonsite.io'
 };

@@ -16,7 +16,7 @@ export const AVAILABLE_SERVICES = {
     METHOD: 'get',
     URL: `/api/mission?include=\
 country,mission_image,mission_image.thumbnail,mission_image.imageFile&filter%5Bcountry%5D%5Bcondition%5D%5Bpath%5D=\
-country&filter%5Bcountry%5D%5Bcondition%5D%5Bvalue%5D={id}`
+country.tid&filter%5Bcountry%5D%5Bcondition%5D%5Bvalue%5D={id}`
   },
   GET_MISSIONS_DATA: {
     METHOD: 'get',

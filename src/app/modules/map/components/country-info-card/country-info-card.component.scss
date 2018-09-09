@@ -12,8 +12,8 @@
 }
 
 .country-card {
-  width: 1200px;
-  height: 750px;
+  width: 90vw;
+  height: 80vh;
   background-color: white;
   display: flex;
   flex-flow: row;
@@ -41,7 +41,7 @@
 
   .country-card-main-image {
     overflow: hidden;
-    height: 465px;
+    height: 70%;
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -76,7 +76,7 @@
       }
     }
     .missions-container {
-      height: 525px;
+      height: 100%;
       overflow: scroll;
 
       .item {
@@ -179,7 +179,7 @@
     transition: 1s width;
 
     .missions-container {
-      height: 635px;
+      height: 100%;
       .item {
         padding-left: 0px;
         p {

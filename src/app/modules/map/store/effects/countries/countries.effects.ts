@@ -43,6 +43,8 @@ export class CountriesEffects {
     .pipe(
       map((action: fromCountries.LoadCountryMissions) => action.payload),
       switchMap((payload) => {
+        console.log("PAYLOAD");
+        console.log(payload);
         return this.service.request(AVAILABLE_SERVICES.GET_MISSIONS, {}, {id: payload.tid}).pipe(
           map(missions => {
             return new fromCountries.LoadCountryMissionsSuccess(missions, payload.tid);

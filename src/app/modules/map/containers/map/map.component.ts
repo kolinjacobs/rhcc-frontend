@@ -95,7 +95,7 @@ export class MapComponent implements AfterContentInit {
       .attr('fill', '#EBA313')
       .attr('name', (d) => d.name)
       .attr('type', 'mission')
-      .attr('opacity', 0.25);
+      .attr('opacity', 0.15);
 
     this.svg
       .selectAll('circle2')
@@ -107,7 +107,7 @@ export class MapComponent implements AfterContentInit {
       .attr('fill', '#EBA313')
       .attr('name', (d) => d.name)
       .attr('type', 'mission')
-      .attr('opacity', 0.5);
+      .attr('opacity', 0.25);
 
     this.svg
       .selectAll('circle3')
@@ -119,7 +119,7 @@ export class MapComponent implements AfterContentInit {
       .attr('fill', '#EBA313')
       .attr('name', (d) => d.name)
       .attr('type', 'mission')
-      .attr('opacity', 0.75);
+      .attr('opacity', 0.5);
   }
 
   addCountyPoints(countries: Country[]) {
