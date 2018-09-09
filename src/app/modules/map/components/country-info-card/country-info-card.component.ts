@@ -2,11 +2,47 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 import {Country} from '../../models/country.model';
 import {Store} from '@ngrx/store';
 import * as fromStore from '../../store';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition, keyframes
+} from '@angular/animations';
 
 @Component({
   selector: 'rh-country-info-card',
   templateUrl: './country-info-card.component.html',
-  styleUrls: ['./country-info-card.component.scss']
+  styleUrls: ['./country-info-card.component.scss'],
+  animations: [
+    trigger('bounceUp', [
+      state('in', style({transform: 'translateY(0)'})),
+      transition('void => *', [
+        animate(400, keyframes([
+          style({opacity: 0, transform: 'translateY(100%)', offset: 0}),
+          style({opacity: 1, transform: 'translateY(-15px)',  offset: 0.3}),
+          style({opacity: 1, transform: 'translateY(0)',     offset: 1.0})
+        ]))
+      ]),
+      transition('* => void', [
+        animate(400, keyframes([
+          style({opacity: 1, transform: 'translateY(0)',     offset: 0}),
+          style({opacity: 1, transform: 'translateY(-15px)', offset: 0.7}),
+          style({opacity: 0, transform: 'translateY(100%)',  offset: 1.0})
+        ]))
+      ])
+    ]),
+    trigger('appearIn', [
+      state('in', style({ opacity: 1 })),
+      transition('void => *', [
+        animate('.5s', keyframes([
+          style({opacity: 0, offset: 0}),
+          style({opacity: 0, offset: 0.6}),
+          style({opacity: 1, offset: 1.0})
+        ]))
+      ])
+    ])
+  ]
 })
 export class CountryInfoCardComponent implements OnInit, OnChanges {
   @Input() showing = false;
@@ -27,7 +63,6 @@ export class CountryInfoCardComponent implements OnInit, OnChanges {
       this.mainImage = this.selectedMission ? this.selectedMission.mission_image : this.country.country_image;
     }
     if (this.selectedMission) {
-      console.log('nice');
       this.selectedMission = this.country.missions.find(x => x.nid === this.selectedMission.nid);
     }
   }
@@ -46,4 +81,7 @@ export class CountryInfoCardComponent implements OnInit, OnChanges {
     this.toggle.emit();
   }
 
+  backButton() {
+    this.selectedMission = null;
+  }
 }

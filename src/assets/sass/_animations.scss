@@ -1,5 +1,11 @@
 .outer-circle {
-  animation: pulsate 4s ease-out;
+  animation: pulsate 3s ease-out;
+  animation-iteration-count: infinite;
+  opacity: 0.0;
+}
+
+.medium-circle {
+  animation: pulsate 3s ease-out;
   animation-iteration-count: infinite;
   opacity: 0.0;
 }
@@ -15,7 +21,7 @@
   }
   100% {
     //transform: scale(1.2, 1.2);
-    r: 2%;
+    r: auto;
     opacity: 0;
   }
 }

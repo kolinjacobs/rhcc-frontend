@@ -1,5 +1,6 @@
-<div class="country-card-container" *ngIf="showing">
+<div class="country-card-container" *ngIf="showing" [@bounceUp]>
   <div class="country-card" [class.mission-card]="selectedMission">
+    <div class="close-btn back-button" *ngIf="selectedMission" (click)="backButton()"></div>
     <div class="country-card-column country-card-column-left">
       <div>
         <div class="country-card-title">
@@ -9,7 +10,12 @@
           </div>
           <img *ngIf="country.flag_image && !selectedMission" [src]="country.flag_image">
         </div>
-        <p>{{selectedMission ?  selectedMission?.body?.value : country.description}}</p>
+        <div class="country-card-description is-mission" [@appearIn] *ngIf="selectedMission">
+          <p>{{selectedMission?.body?.value}}</p>
+        </div>
+        <div class="country-card-description" *ngIf="!selectedMission">
+          <p>{{country.description}}</p>
+        </div>
       </div>
       <div *ngIf="selectedMission?.mission_image || country.country_image"  class="country-card-main-image"
            [ngStyle]="{'background-image': 'url(' + mainImage + ')'}">

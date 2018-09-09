@@ -107,6 +107,7 @@ export class MapComponent implements AfterContentInit {
       .attr('r', (d) => Math.max(10 , Math.min(d.count * 10, 50)) + 'px')
       .attr('fill', '#EBA313')
       .attr('name', (d) => d.name)
+      .attr('class', 'medium-circle')
       .attr('type', 'mission')
       .attr('opacity', 0.25);
 
