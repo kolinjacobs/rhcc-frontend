@@ -87,6 +87,9 @@ export function reducer(
         let contry = x;
         const relationships = data.find( c => c.id === x.uuid).relationships;
         const tid = data.find( c => c.id === x.uuid).attributes.tid;
+        if (contry.stats) {
+          contry.statArr = contry.stats.split('\\').filter(i => i !== '');
+        }
         let country_image: string;
         if (relationships.country_image.data) {
           const country_image_id = included.find( r => r.id === relationships.country_image.data.id).relationships.imageFile.data.id;
@@ -133,6 +136,7 @@ export function reducer(
 
       const missions = action.payload.data.map(x => {
         let mission = {...x.attributes};
+        mission.changed = new Date(mission.changed * 1000);
         if (x.relationships.mission_image.data) {
           const id = x.relationships.mission_image.data.id;
           const image_id = action.payload.included.find(i => i.id === id).relationships.imageFile.data.id;
@@ -174,13 +178,22 @@ export function reducer(
     }
 
     case fromActions.CountriesActionTypes.LOAD_COUNTRIES_MISSIONS_DATA_SUCCESS: {
-      console.log(action.payload);
-      console.log(action.country);
+      const updates = action.payload.data.map(x => {
+        let { attributes, ...item} = x;
+        attributes.changed = new Date(attributes.changed * 1000);
+        if (x.relationships.field_image.data) {
+          const id = x.relationships.field_image.data.id;
+          const image_id = action.payload.included.find(i => i.id === id).relationships.imageFile.data.id;
+          const image = action.payload.included.find(i => i.id === image_id).attributes.url;
+          attributes = {...attributes, image: image};
+        }
+        return { ...item, attributes };
+      });
 
       const country = state.countries.find(x => x.tid === action.country.country.tid);
       country.missions = country.missions.map (x => {
         if (x.nid === action.country.mission_id) {
-          x.updates = action.payload.data;
+          x.updates = updates;
         }
         return x;
       });
@@ -190,8 +203,6 @@ export function reducer(
         }
         return x;
       });
-
-      console.log(countries);
 
       return {
         ...state,

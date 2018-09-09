@@ -12,7 +12,7 @@
 }
 
 .country-card {
-  width: 90vw;
+  width: 85vw;
   height: 80vh;
   position: relative;
   background-color: white;
@@ -72,9 +72,23 @@
   }
 
   .country-card-stats {
-    padding: 20px 40px 40px 40px;
+    padding: 40px;
+    display: grid;
+    grid-template-rows: 185px 1fr;
+    height: 100%;
+
     .country-card-stats-header {
-      height: 164px;
+
+      ul {
+        list-style: none;
+        margin: 0 0 25px 0;
+        padding: 0;
+        color: white;
+
+        li {
+          padding: 2px 0;
+        }
+      }
       h1 {
         color: white;
         font-weight: 300;
@@ -96,13 +110,14 @@
       }
     }
     .missions-container {
-      height: 100%;
       overflow: scroll;
+      max-height: 100%;
+      margin-right: -5px;
 
       .item {
         padding: 25px 0px 25px 25px;
-        height: 75px;
         border-bottom: 1px solid grey;
+
         h1 {
           font-size: 24px;
           color: #FFFFFF;
@@ -114,7 +129,7 @@
             content: '';
             background-color: #F1AE22;
             -webkit-mask-repeat: no-repeat;
-            -webkit-mask-image: url(/src/assets/icons/map-marker-alt.svg);
+            -webkit-mask-image: url('/assets/icons/map-marker-alt.svg');
             float: left;
             margin-left: -25px;
             margin-top: 7px;
@@ -142,7 +157,15 @@
   .country-card-title {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    //align-items: center;
+
+    h1 {
+      line-height: 1.1;
+      margin-left: -6px;
+    }
+    h3 {
+      margin: 10px 0 15px;
+    }
 
     img {
       height: 75px;
@@ -163,7 +186,6 @@
   transition: .3s width;
 
   > div:first-child {
-    display: grid;
     position: relative;
     height: 30%;
     padding: 40px 40px 40px 40px;
@@ -172,7 +194,7 @@
       content: '';
       display: block;
       height: 20px;
-      width: 100%;
+      width: 92%;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
       position: absolute;
       left: 0;
@@ -187,8 +209,13 @@
 
 .mission-card {
   .country-card-column-left {
-    width: 70%;
+    width: 66.666%;
     transition: .3s width;
+
+    > div {
+      display: grid;
+    }
+
     .country-card-title-info {
       h1 {
         font-size: 48px;
@@ -206,20 +233,42 @@
     }
   }
   .country-card-column-right {
-    width: 30%;
+    width: 33.333%;
     transition: .3s width;
 
-    .missions-container {
+    .country-card-stats {
+      padding: 40px;
+      display: grid;
+      grid-template-rows: 50px 1fr;
       height: 100%;
+    }
+
+    .missions-container {
+      color: white;
+
+      ::ng-deep {
+        p {
+          color: white;
+          margin-top: 3px;
+          font-weight: lighter;
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      }
+
+      img {
+        max-width: 100%;
+        margin-top: 15px;
+      }
+
       .item {
         padding-left: 0px;
         p {
           font-size: 16px;
-          color: #FFFFFF;
+          color: #FFFFFF !important;
           letter-spacing: -0.03px;
           font-weight: 500;
-          margin: 0;
-          padding: 0 20px 0;
+          margin: 3px 0 0 0;
         }
         span {
           font-style: italic;
@@ -231,9 +280,6 @@
           }
         }
       }
-    }
-    .country-card-stats-header {
-      height: 55px;
     }
   }
 }

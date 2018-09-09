@@ -22,13 +22,24 @@
       font-size: 18px;
       color: #BBBDBF;
       text-align: left;
-      margin-right: 15px;
+      margin-right: 45px;
       span {
         margin-right: 10px;
         font-weight: bold;
         font-size: 72px;
         color: #BBBDBF;
         text-align: left;
+      }
+
+      &:first-child:after {
+        content: '';
+        width: 1px;
+        background: #BBBDBF;
+        height: 50%;
+        display: inline-block;
+        position: absolute;
+        top: 30%;
+        margin: 0 20px 0 20px;
       }
     }
   }

@@ -9,14 +9,21 @@ import * as fromContainer from './containers';
 import * as fromComponents from './components';
 import { MissionInfoComponent } from './components/mission-info/mission-info.component';
 import { CountryInfoCardComponent } from './components/country-info-card/country-info-card.component';
+import { SafeHtmlPipe } from '../../pipes/safeHtml/safe-html.pipe';
+import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
 @NgModule({
   imports: [
     CommonModule,
+    MalihuScrollbarModule.forRoot(),
     StoreModule.forFeature('map', reducers),
     EffectsModule.forFeature(effects),
   ],
   exports: [...fromContainer.containers, ...fromComponents.components],
-  declarations: [...fromContainer.containers, ...fromComponents.components]
+  declarations: [
+    SafeHtmlPipe,
+    ...fromContainer.containers,
+    ...fromComponents.components
+  ]
 })
 export class MapModule { }

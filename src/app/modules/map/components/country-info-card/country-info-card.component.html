@@ -10,11 +10,11 @@
           </div>
           <img *ngIf="country.flag_image && !selectedMission" [src]="country.flag_image">
         </div>
-        <div class="country-card-description is-mission" [@appearIn] *ngIf="selectedMission">
-          <p>{{selectedMission?.body?.value}}</p>
+        <div class="country-card-description is-mission" [@appearIn] *ngIf="selectedMission" malihu-scrollbar>
+          <div [innerHTML]="selectedMission?.body?.value | safeHtml"></div>
         </div>
-        <div class="country-card-description" *ngIf="!selectedMission">
-          <p>{{country.description}}</p>
+        <div class="country-card-description" *ngIf="!selectedMission" malihu-scrollbar>
+          <div [innerHTML]="country.description | safeHtml"></div>
         </div>
       </div>
       <div *ngIf="selectedMission?.mission_image || country.country_image"  class="country-card-main-image"
@@ -29,22 +29,25 @@
       <div class="country-card-stats">
         <div class="country-card-stats-header">
           <h1 *ngIf="!selectedMission">stats</h1>
-          <p *ngIf="!selectedMission">{{country.stats}}<br>line three</p>
+          <ul *ngIf="!selectedMission && country.statArr">
+            <li *ngFor="let stat of country.statArr">{{ stat }}</li>
+          </ul>
           <h1 class="missions-header">{{selectedMission ? 'LATEST UPDATES' : 'missions'}}</h1>
         </div>
-        <div *ngIf="!selectedMission" class="missions-container">
+        <div *ngIf="!selectedMission" class="missions-container" malihu-scrollbar>
           <div *ngFor="let mission of country.missions" class="item" (click)="loadMission(mission)">
               <h1>{{mission.title}}</h1>
               <h2>{{mission.subheadline}}</h2>
-              <p>Last Updated July 3rd, 2018</p>
+              <p>{{ mission.changed | date }}</p>
           </div>
         </div>
-        <div *ngIf="selectedMission && selectedMission.updates" class="missions-container">
+        <div *ngIf="selectedMission && selectedMission.updates" class="missions-container" malihu-scrollbar>
           <div *ngFor="let update of selectedMission.updates" class="item">
             <div *ngIf="selectedMission">
-              <p>Bob Smith</p>
-              <span>3 hours ago</span>
-              <p>{{update.attributes.body.value}}</p>
+              <p>{{update.attributes.title}}</p>
+              <span>{{ update.attributes.changed | date }}</span>
+              <div [innerHTML]="update.attributes.body.value | safeHtml"></div>
+              <img *ngIf="update.attributes.image" [src]="update.attributes.image" />
             </div>
           </div>
         </div>

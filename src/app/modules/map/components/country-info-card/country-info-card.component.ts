@@ -83,5 +83,6 @@ export class CountryInfoCardComponent implements OnInit, OnChanges {
 
   backButton() {
     this.selectedMission = null;
+    this.mainImage = this.country.country_image;
   }
 }

@@ -21,6 +21,10 @@ country.tid&filter%5Bcountry%5D%5Bcondition%5D%5Bvalue%5D={id}`
   GET_MISSIONS_DATA: {
     METHOD: 'get',
     URL: `/api/node/mission_update?filter%5BmissionUpdate%5D%5Bcondition%5D%5Bpath%5D=mission_assignment.nid&filter%5Bmission\
-Update%5D%5Bcondition%5D%5Bvalue%5D={id}&include=mission_assignment,field_image,field_image.thumbnail,field_image.imageFile`
+Update%5D%5Bcondition%5D%5Bvalue%5D={id}&include=mission_assignment,field_image,field_image.thumbnail,field_image.imageFile&sort=-created`
+  },
+  GET_WEATHER_DATA: {
+    METHOD: 'get',
+    URL: `http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=981a67641076291487e85c0d1925cf9a`
   }
 };

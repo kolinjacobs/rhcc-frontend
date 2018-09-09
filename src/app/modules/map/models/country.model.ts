@@ -6,6 +6,7 @@ export interface Country {
   continent: string;
   description: string;
   stats: string;
+  statArr?: Array<string>;
   uuid: string;
   missions?: Array<any>;
   country_image: string;
