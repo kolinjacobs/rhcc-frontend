@@ -155,12 +155,12 @@
   background-color: #2B414E;
   border: 1px solid white;
   border-left: 0px;
-  transition: .5s width;
+  transition: .3s width;
 }
 
 .country-card-column-left {
   height: calc( 100% + 2px );
-  transition: .5s width;
+  transition: .3s width;
 
   > div:first-child {
     display: grid;
@@ -188,7 +188,7 @@
 .mission-card {
   .country-card-column-left {
     width: 70%;
-    transition: .5s width;
+    transition: .3s width;
     .country-card-title-info {
       h1 {
         font-size: 48px;
@@ -207,7 +207,7 @@
   }
   .country-card-column-right {
     width: 30%;
-    transition: .5s width;
+    transition: .3s width;
 
     .missions-container {
       height: 100%;
