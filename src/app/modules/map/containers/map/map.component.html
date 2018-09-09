@@ -2,5 +2,5 @@
   <img src="./src/assets/app-logo.svg" class="app-logo">
   <rh-mission-info [stats]="missionStats"></rh-mission-info>
   <svg attr.height.px="{{innerHeight}}" attr.width="{{innerWidth}}px" class="map-holder" (click)="selectCountry($event)"></svg>
-  <rh-country-info-card [country]="selectedCountry" [showing]="countryInfoCardShowing" (toggle)="toggleCountryInfoCard($event)" ></rh-country-info-card>
+  <rh-country-info-card [country]="selectedCountry" [showing]="countryInfoCardShowing" (toggle)="toggleCountryInfoCard()" ></rh-country-info-card>
 </div>
