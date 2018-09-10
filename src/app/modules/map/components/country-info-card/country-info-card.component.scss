@@ -179,6 +179,7 @@
   border: 1px solid white;
   border-left: 0px;
   transition: .3s width;
+  position: relative;
 }
 
 .country-card-column-left {
@@ -287,7 +288,9 @@
 .close-btn {
   width: rem(45px);
   height: rem(45px);
-  position: fixed;
+  position: absolute;
+  top: 0;
+  right: rem(-20px);
   background-color: #F1AE22;
   border: 5px solid white;
   border-radius: rem(45px);

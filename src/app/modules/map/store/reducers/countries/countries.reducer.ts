@@ -92,13 +92,13 @@ export function reducer(
         }
         let country_image: string;
         if (relationships.country_image.data) {
-          const country_image_id = included.find( r => r.id === relationships.country_image.data.id).relationships.imageFile.data.id;
+          const country_image_id = included.find( r => r.id === relationships.country_image.data.id).relationships.field_image.data.id;
           country_image  = included.find( r => r.id === country_image_id).attributes.url;
           contry = { ...contry, country_image };
         }
         let flag_image: string;
         if (relationships.flag.data) {
-          const flag_image_id = included.find( r => r.id === relationships.flag.data.id).relationships.imageFile.data.id;
+          const flag_image_id = included.find( r => r.id === relationships.flag.data.id).relationships.field_image.data.id;
           flag_image = included.find( r => r.id === flag_image_id).attributes.url;
           contry = { ...contry, flag_image };
         }
@@ -139,7 +139,7 @@ export function reducer(
         mission.changed = new Date(mission.changed * 1000);
         if (x.relationships.mission_image.data) {
           const id = x.relationships.mission_image.data.id;
-          const image_id = action.payload.included.find(i => i.id === id).relationships.imageFile.data.id;
+          const image_id = action.payload.included.find(i => i.id === id).relationships.field_image.data.id;
           const image = action.payload.included.find(i => i.id === image_id).attributes.url;
           mission = {...mission, mission_image: image};
         }
@@ -181,9 +181,9 @@ export function reducer(
       const updates = action.payload.data.map(x => {
         let { attributes, ...item} = x;
         attributes.changed = new Date(attributes.changed * 1000);
-        if (x.relationships.field_image.data) {
-          const id = x.relationships.field_image.data.id;
-          const image_id = action.payload.included.find(i => i.id === id).relationships.imageFile.data.id;
+        if (x.relationships.image.data) {
+          const id = x.relationships.image.data.id;
+          const image_id = action.payload.included.find(i => i.id === id).relationships.field_image.data.id;
           const image = action.payload.included.find(i => i.id === image_id).attributes.url;
           attributes = {...attributes, image: image};
         }
