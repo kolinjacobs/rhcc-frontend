@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,700');
 
+
+@import 'assets/sass/abstracts/functions';
+@import 'assets/sass/abstracts/variables';
+@import 'assets/sass/abstracts/mixins';
+
+@import 'assets/sass/animations';
+@import 'assets/sass/dragger-bar';
+
+
 /* You can add global styles to this file, and also import other style files */
 body {
   margin: 0px auto;
@@ -13,11 +22,8 @@ p {
 
 h1 {
   font-weight: 300;
-  font-size: 48px;
+  font-size: rem(48px);
   color: #25343B;
   text-align: left;
   margin: 0px;
 }
-
-@import 'assets/sass/animations';
-@import 'assets/sass/dragger-bar';

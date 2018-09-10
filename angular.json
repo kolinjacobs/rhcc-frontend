@@ -29,7 +29,12 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
               "./node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/sass"
+              ]
+            }
           },
           "configurations": {
             "production": {

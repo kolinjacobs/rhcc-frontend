@@ -1,4 +1,4 @@
-
+@import 'import';
 
 .country-card-container {
   position: fixed;
@@ -47,7 +47,7 @@
   overflow: scroll;
 
   p {
-    padding: 0 15px 15px 0;
+    padding: rem-calc(0 15px 15px 0);
   }
 }
 
@@ -72,37 +72,37 @@
   }
 
   .country-card-stats {
-    padding: 40px;
+    padding: rem(40px);
     display: grid;
-    grid-template-rows: 185px 1fr;
+    grid-template-rows: rem(185px) 1fr;
     height: 100%;
 
     .country-card-stats-header {
 
       ul {
         list-style: none;
-        margin: 0 0 25px 0;
+        margin: rem-calc(0 0 25px 0);
         padding: 0;
         color: white;
 
         li {
-          padding: 2px 0;
+          padding: rem-calc(2px 0);
         }
       }
       h1 {
         color: white;
         font-weight: 300;
-        font-size: 24px;
+        font-size: rem(24px);
         color: #BBBDBF;
         text-align: left;
         text-transform: uppercase;
       }
       .missions-header {
-        padding-bottom: 10px;
+        padding-bottom: rem(10px);
         border-bottom: 1px solid grey;
       }
       p {
-        font-size: 14px;
+        font-size: rem(14px);
         color: #FFFFFF;
       }
       h3 {
@@ -115,36 +115,36 @@
       margin-right: -5px;
 
       .item {
-        padding: 25px 0px 25px 25px;
+        padding: rem-calc(25px 0px 25px 25px);
         border-bottom: 1px solid grey;
 
         h1 {
-          font-size: 24px;
+          font-size: rem(24px);
           color: #FFFFFF;
           text-align: left;
           &:after {
-            height: 20px;
-            width: 20px;
+            height: rem(20px);
+            width: rem(20px);
             display: block;
             content: '';
             background-color: #F1AE22;
             -webkit-mask-repeat: no-repeat;
             -webkit-mask-image: url('/assets/icons/map-marker-alt.svg');
             float: left;
-            margin-left: -25px;
-            margin-top: 7px;
+            margin-left: rem(-25px);
+            margin-top: rem(7px);
           }
         }
         h2 {
           font-weight: 300;
-          font-size: 18px;
+          font-size: rem(18px);
           color: #588EA5;
           text-align: left;
-          margin: 5px 0px
+          margin: rem-calc(5px 0px);
         }
         p {
           font-weight: bold;
-          font-size: 12px;
+          font-size: rem(12px);
           color: #BBBDBF;
           text-align: left;
           margin: 0px;
@@ -218,13 +218,13 @@
 
     .country-card-title-info {
       h1 {
-        font-size: 48px;
+        font-size: rem(48px);
         color: #25343B;
         letter-spacing: -0.03px;
       }
       h3 {
         font-weight: bold;
-        font-size: 24px;
+        font-size: rem(24px);
         color: #588EA5;
         text-align: left;
         margin: 0 0 15px;
@@ -239,7 +239,7 @@
     .country-card-stats {
       padding: 40px;
       display: grid;
-      grid-template-rows: 50px 1fr;
+      grid-template-rows: rem(50px) 1fr;
       height: 100%;
     }
 
@@ -251,24 +251,24 @@
           color: white;
           margin-top: 3px;
           font-weight: lighter;
-          font-size: 14px;
+          font-size: rem(14px);
           line-height: 1.5;
         }
       }
 
       img {
         max-width: 100%;
-        margin-top: 15px;
+        margin-top: rem(15px);
       }
 
       .item {
         padding-left: 0px;
         p {
-          font-size: 16px;
+          font-size: rem(16px);
           color: #FFFFFF !important;
           letter-spacing: -0.03px;
           font-weight: 500;
-          margin: 3px 0 0 0;
+          margin: rem-calc(3px 0 0 0);
         }
         span {
           font-style: italic;
@@ -285,22 +285,22 @@
 }
 
 .close-btn {
-  width: 45px;
-  height: 45px;
+  width: rem(45px);
+  height: rem(45px);
   position: fixed;
   background-color: #F1AE22;
   border: 5px solid white;
-  border-radius: 45px;
+  border-radius: rem(45px);
   align-self: flex-end;
-  margin-top: -20px;
-  margin-left: 20px;
+  margin-top: rem(-20px);
+  margin-left: rem(20px);
   display: flex;
   justify-content: center;
   align-items: center;
 
   &:before {
-    height: 20px;
-    width: 20px;
+    height: rem(20px);
+    width: rem(20px);
     display: block;
     content: '';
     background-color: #25343B;
@@ -312,16 +312,16 @@
   &.back-button {
     position: absolute;
     z-index: 99;
-    top: -20px;
-    left: -18px;
+    top: rem(-20px);
+    left: rem(-18px);
     margin: 0;
 
     &:before {
-      height: 30px;
-      width: 30px;
+      height: rem(30px);
+      width: rem(30px);
       -webkit-mask-image: url('/assets/icons/back.svg');
-      margin-top: 6px;
-      margin-right: 4px;
+      margin-top: rem(6px);
+      margin-right: rem(4px);
     }
   }
 }

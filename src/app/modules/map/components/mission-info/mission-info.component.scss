@@ -1,3 +1,5 @@
+@import 'import';
+
 .mission-info-container {
   position: absolute;
   display: flex;
@@ -8,7 +10,7 @@
   h3 {
     font-weight: 300;
     font-style: italic;
-    font-size: 18px;
+    font-size: rem(18px);
     color: #BBBDBF;
     text-align: left;
     margin: 0px;
@@ -19,14 +21,14 @@
       margin: 0px;
       color: white;
       font-weight: 300;
-      font-size: 18px;
+      font-size: rem(18px);
       color: #BBBDBF;
       text-align: left;
       margin-right: 45px;
       span {
         margin-right: 10px;
         font-weight: bold;
-        font-size: 72px;
+        font-size: rem(72px);
         color: #BBBDBF;
         text-align: left;
       }
@@ -39,7 +41,7 @@
         display: inline-block;
         position: absolute;
         top: 30%;
-        margin: 0 20px 0 20px;
+        margin: rem-calc(0 20px 0 20px);
       }
     }
   }
