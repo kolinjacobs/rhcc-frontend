@@ -49,6 +49,12 @@
   p {
     padding: rem-calc(0 15px 15px 0);
   }
+
+  ::ng-deep {
+    p:first-child {
+      margin-top: 0;
+    }
+  }
 }
 
 .country-card-column {

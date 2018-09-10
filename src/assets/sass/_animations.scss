@@ -25,3 +25,29 @@
     opacity: 0;
   }
 }
+
+//.app-background {
+//  position: relative;
+//  &::after {
+//    content: '';
+//    background-image: url('/assets/funky-lines.png');
+//    background-blend-mode: multiply;
+//    width: 100%;
+//    margin: 0;
+//    text-align: center;
+//    height: 100%;
+//    padding-top: 120px;
+//    box-sizing: border-box;
+//    -webkit-animation: slide 20s linear infinite;
+//    position: absolute;
+//    top: 0;
+//    right: 0;
+//    bottom: 0;
+//    left: 0;
+//  }
+//}
+//
+//@-webkit-keyframes slide {
+//  from { background-position: 0 0; }
+//  to { background-position: -400px 0; }
+//}

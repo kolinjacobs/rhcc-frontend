@@ -10,7 +10,7 @@ export const AVAILABLE_SERVICES = {
   },
   GET_COUNTRIES_DATA: {
     METHOD: 'get',
-    URL: '/api/taxonomy_term/country?include=flag,flag.thumbnail,country_image,country_image.field_image'
+    URL: '/api/taxonomy_term/country?include=flag,flag.field_image,country_image,country_image.field_image'
   },
   GET_MISSIONS: {
     METHOD: 'get',
