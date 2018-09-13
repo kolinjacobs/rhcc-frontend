@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-  <div class="mission-updates">
+  <div class="mission-updates" [@slideInRight]>
     <h3 class="subheader">Latest Updates</h3>
     <div [@appearIn] *ngIf="selectedMission.updates && selectedMission.updates.length > 0" class="missions-container" malihu-scrollbar>
       <div *ngFor="let update of selectedMission.updates" class="item">
