@@ -1,58 +1,65 @@
 <div class="country-card-container" *ngIf="showing" [@bounceUp]>
-  <div class="country-card" [class.mission-card]="selectedMission">
-    <div class="close-btn back-button" *ngIf="selectedMission" (click)="backButton()"></div>
-    <div class="country-card-column country-card-column-left">
-      <div>
-        <div class="country-card-title">
-          <div class="country-card-title-info">
-            <h1>{{selectedMission ?  selectedMission?.title : country.name}}</h1>
-            <h3>{{selectedMission ?  selectedMission?.subheadline : country.continent}}</h3>
-          </div>
-          <img *ngIf="country.flag_image && !selectedMission" [src]="country.flag_image">
-        </div>
-        <div class="country-card-description is-mission" [@appearIn] *ngIf="selectedMission" malihu-scrollbar>
-          <div [innerHTML]="selectedMission?.body?.value | safeHtml"></div>
-        </div>
-        <div class="country-card-description" [@appearIn] *ngIf="!selectedMission" malihu-scrollbar>
-          <div [innerHTML]="country.description | safeHtml"></div>
-        </div>
-      </div>
-      <div *ngIf="selectedMission?.mission_image || country.country_image"  class="country-card-main-image"
-           [ngStyle]="{'background-image': 'url(' + mainImage + ')'}">
-           <!--[style.background-image]="'url('+ selectedMission?.mission_image ? selectedMission?.mission_image : country.country_image +')'"-->
-
-        <!--<img [src]="selectedMission?.mission_image ? selectedMission.mission_image : country.country_image" class="country-image">-->
-      </div>
-    </div>
-    <div class="country-card-column country-card-column-right">
-      <div class="close-btn" (click)="toggleCard()"></div>
-      <div class="country-card-stats">
-        <div class="country-card-stats-header">
-          <h1 [@appearIn] *ngIf="!selectedMission">stats</h1>
-          <ul [@appearIn] *ngIf="!selectedMission && country.statArr">
-            <li *ngFor="let stat of country.statArr">{{ stat }}</li>
-          </ul>
-          <h1 class="missions-header">{{selectedMission ? 'LATEST UPDATES' : 'missions'}}</h1>
-        </div>
-        <div [@appearIn] *ngIf="!selectedMission" class="missions-container" malihu-scrollbar>
-          <div *ngFor="let mission of country.missions" class="item" (click)="loadMission(mission)">
-              <h1>{{mission.title}}</h1>
-              <h2>{{mission.subheadline}}</h2>
-              <p>{{ mission.changed | date }}</p>
-          </div>
-        </div>
-        <div [@appearIn] *ngIf="selectedMission && selectedMission.updates" class="missions-container" malihu-scrollbar>
-          <div *ngFor="let update of selectedMission.updates" class="item">
-            <div *ngIf="selectedMission">
-              <p>{{update.attributes.title}}</p>
-              <span>{{ update.attributes.changed | date }}</span>
-              <div [innerHTML]="update.attributes.body.value | safeHtml"></div>
-              <img *ngIf="update.attributes.image" [src]="update.attributes.image" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="country-card">
+    <div class="close-btn" [@appearIn] (click)="toggleCard()"></div>
+    <rh-country-details *ngIf="!selectedMission" (selectItem)="loadMission($event)" [country]="country" [mainImage]="mainImage"></rh-country-details>
+    <rh-mission-details *ngIf="selectedMission" [mainImage]="mainImage" [selectedMission]="selectedMission" (goBack)="backButton()"></rh-mission-details>
   </div>
+  <!--<div class="country-card" *ngIf="selectedMission" [class.mission-card]="selectedMission">-->
+    <!--<div class="close-btn back-button" (click)="backButton()"></div>-->
+    <!--<div class="country-card-column country-card-column-left">-->
+      <!--<div>-->
+        <!--<div class="country-card-title">-->
+          <!--<div class="country-card-title-info">-->
+            <!--<h1>{{selectedMission ?  selectedMission?.title : country.name}}</h1>-->
+            <!--<h3>{{selectedMission ?  selectedMission?.subheadline : country.continent}}</h3>-->
+          <!--</div>-->
+          <!--<img *ngIf="country.flag_image && !selectedMission" [src]="country.flag_image">-->
+        <!--</div>-->
+        <!--<div class="country-card-description is-mission" [@appearIn] *ngIf="selectedMission" malihu-scrollbar>-->
+          <!--<div [innerHTML]="selectedMission?.body?.value | safeHtml"></div>-->
+        <!--</div>-->
+        <!--<div class="country-card-description" [@appearIn] *ngIf="!selectedMission" malihu-scrollbar>-->
+          <!--<div [innerHTML]="country.description | safeHtml"></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div *ngIf="selectedMission?.mission_image || country.country_image"  class="country-card-main-image"-->
+           <!--[ngStyle]="{'background-image': 'url(' + mainImage + ')'}">-->
+           <!--&lt;!&ndash;[style.background-image]="'url('+ selectedMission?.mission_image ? selectedMission?.mission_image : country.country_image +')'"&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<img [src]="selectedMission?.mission_image ? selectedMission.mission_image : country.country_image" class="country-image">&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="country-card-column country-card-column-right">-->
+      <!--<div class="close-btn" [@appearIn] (click)="toggleCard()"></div>-->
+      <!--<div class="country-card-stats" *ngIf="!selectedMission && country.statArr && country.statArr.length > 0" [ngClass]="{'with-stats': !selectedMission && country.statArr && country.statArr.length > 0}">-->
+        <!--<div class="country-card-stats-header">-->
+          <!--<h3 class="subheader">stats</h3>-->
+          <!--<ul [@appearIn] *ngIf="country.statArr">-->
+            <!--<li *ngFor="let stat of country.statArr">{{ stat }}</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="country-card-missions">-->
+        <!--<h3 class="subheader">{{selectedMission ? 'LATEST UPDATES' : 'missions'}}</h3>-->
+        <!--<div [@appearIn] *ngIf="!selectedMission" class="missions-container" malihu-scrollbar>-->
+          <!--<div *ngFor="let mission of country.missions" class="item" (click)="loadMission(mission)">-->
+            <!--<h1>{{mission.title}}</h1>-->
+            <!--<h2>{{mission.subheadline}}</h2>-->
+            <!--<p>{{ mission.changed | date }}</p>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div [@appearIn] *ngIf="selectedMission && selectedMission.updates" class="missions-container" malihu-scrollbar>-->
+          <!--<div *ngFor="let update of selectedMission.updates" class="item">-->
+            <!--<div *ngIf="selectedMission">-->
+              <!--<p>{{update.attributes.title}}</p>-->
+              <!--<span>{{ update.attributes.changed | date }}</span>-->
+              <!--<div [innerHTML]="update.attributes.body.value | safeHtml"></div>-->
+              <!--<img *ngIf="update.attributes.image" [src]="update.attributes.image" />-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
   <div class="country-card-background" (click)="toggleCard()"></div>
 </div>

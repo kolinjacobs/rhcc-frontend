@@ -4,11 +4,8 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import { effects } from './store/effects';
 import { reducers } from './store/reducers';
-import { MapComponent } from './containers/map/map.component';
 import * as fromContainer from './containers';
 import * as fromComponents from './components';
-import { MissionInfoComponent } from './components/mission-info/mission-info.component';
-import { CountryInfoCardComponent } from './components/country-info-card/country-info-card.component';
 import { SafeHtmlPipe } from '../../pipes/safeHtml/safe-html.pipe';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
@@ -23,7 +20,7 @@ import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
   declarations: [
     SafeHtmlPipe,
     ...fromContainer.containers,
-    ...fromComponents.components
+    ...fromComponents.components,
   ]
 })
 export class MapModule { }

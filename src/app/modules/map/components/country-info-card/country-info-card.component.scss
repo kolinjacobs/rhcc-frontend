@@ -1,27 +1,5 @@
 @import 'import';
 
-.country-card-container {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.country-card {
-  width: 85vw;
-  height: 80vh;
-  position: relative;
-  background-color: white;
-  display: flex;
-  flex-flow: row;
-  z-index: 2;
-  box-shadow: 4px 5px 16px 6px rgba(0,0,0,0.80);
-}
-
 .country-card-background {
   background: rgba(37,52,59,0.85);
   position: fixed;
@@ -54,6 +32,10 @@
     p:first-child {
       margin-top: 0;
     }
+
+    .mCSB_container {
+      padding-bottom: rem(20px);
+    }
   }
 }
 
@@ -77,11 +59,25 @@
     background-size: cover;
   }
 
+  .country-card-missions {
+    h1 {
+      color: white;
+      font-weight: 300;
+      font-size: rem(24px);
+      color: #BBBDBF;
+      text-align: left;
+      text-transform: uppercase;
+    }
+  }
+
   .country-card-stats {
     padding: rem(40px);
-    display: grid;
-    grid-template-rows: rem(185px) 1fr;
     height: 100%;
+
+    &.with-stats {
+      display: grid;
+      grid-template-rows: rem(180px) 1fr;
+    }
 
     .country-card-stats-header {
 
@@ -95,6 +91,8 @@
           padding: rem-calc(2px 0);
         }
       }
+
+      // Repeated above
       h1 {
         color: white;
         font-weight: 300;
@@ -121,7 +119,8 @@
       margin-right: -5px;
 
       .item {
-        padding: rem-calc(25px 0px 25px 25px);
+        padding-left: 0;
+        //padding: rem-calc(25px 0px 25px 25px);
         border-bottom: 1px solid grey;
 
         h1 {
@@ -167,7 +166,6 @@
 
     h1 {
       line-height: 1.1;
-      margin-left: -6px;
     }
     h3 {
       margin: 10px 0 15px;
@@ -180,12 +178,56 @@
   }
 
 }
+
 .country-card-column-right {
   background-color: #2B414E;
   border: 1px solid white;
   border-left: 0px;
   transition: .3s width;
   position: relative;
+
+  .missions-container {
+    color: white;
+
+    ::ng-deep {
+      p {
+        margin-top: 3px;
+      }
+
+      div,
+      p {
+        color: white;
+        font-weight: lighter;
+        font-size: rem(14px);
+        line-height: 1.5;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      margin-top: rem(15px);
+    }
+
+    .item {
+      padding-left: 0px;
+      p {
+        font-size: rem(16px);
+        color: #FFFFFF !important;
+        letter-spacing: -0.03px;
+        font-weight: 500;
+        margin: rem-calc(3px 0 0 0);
+      }
+      span {
+        font-style: italic;
+        color: #588EA5;
+      }
+      h1 {
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
 }
 
 .country-card-column-left {
@@ -221,6 +263,7 @@
 
     > div {
       display: grid;
+      grid-template-rows: auto 1fr;
     }
 
     .country-card-title-info {
@@ -236,7 +279,6 @@
         text-align: left;
         margin: 0 0 15px;
       }
-
     }
   }
   .country-card-column-right {
@@ -249,88 +291,12 @@
       grid-template-rows: rem(50px) 1fr;
       height: 100%;
     }
-
-    .missions-container {
-      color: white;
-
-      ::ng-deep {
-        p {
-          color: white;
-          margin-top: 3px;
-          font-weight: lighter;
-          font-size: rem(14px);
-          line-height: 1.5;
-        }
-      }
-
-      img {
-        max-width: 100%;
-        margin-top: rem(15px);
-      }
-
-      .item {
-        padding-left: 0px;
-        p {
-          font-size: rem(16px);
-          color: #FFFFFF !important;
-          letter-spacing: -0.03px;
-          font-weight: 500;
-          margin: rem-calc(3px 0 0 0);
-        }
-        span {
-          font-style: italic;
-          color: #588EA5;
-        }
-        h1 {
-          &:after {
-            display: none;
-          }
-        }
-      }
-    }
   }
 }
 
-.close-btn {
-  width: rem(45px);
-  height: rem(45px);
-  position: absolute;
-  top: 0;
-  right: rem(-20px);
-  background-color: #F1AE22;
-  border: 5px solid white;
-  border-radius: rem(45px);
-  align-self: flex-end;
-  margin-top: rem(-20px);
-  margin-left: rem(20px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:before {
-    height: rem(20px);
-    width: rem(20px);
-    display: block;
-    content: '';
-    background-color: #25343B;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    -webkit-mask-image: url('/assets/icons/times.svg');
-  }
-
-  &.back-button {
-    position: absolute;
-    z-index: 99;
-    top: rem(-20px);
-    left: rem(-18px);
-    margin: 0;
-
-    &:before {
-      height: rem(30px);
-      width: rem(30px);
-      -webkit-mask-image: url('/assets/icons/back.svg');
-      margin-top: rem(6px);
-      margin-right: rem(4px);
-    }
-  }
+.country-card-missions {
+  padding: rem(40px);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
 }

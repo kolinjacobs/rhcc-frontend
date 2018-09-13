@@ -1,0 +1,25 @@
+@import 'import';
+
+.subheader {
+  font-size: rem(24px);
+  font-weight: lighter;
+  color: $subheader-font-color;
+  text-align: left;
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+  margin: 0 0 10px 0;
+}
+
+.stat-list {
+  margin: 0;
+  color: white;
+  padding: 0;
+  list-style: none;
+
+  li {
+    font-size: rem(18px);
+    font-weight: 500;
+    padding: 10px 0;
+  }
+}

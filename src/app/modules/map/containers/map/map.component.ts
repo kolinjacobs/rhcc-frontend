@@ -55,6 +55,9 @@ export class MapComponent implements AfterContentInit {
   }
 
   renderMap(data) {
+    const zoom = d3.zoom()
+      .scaleExtent([1, 10])
+      .on('zoom', this.zoomed);
 
     this.projection = d3geo.geoEquirectangular()
       .scale([this.innerWidth / (2  * Math.PI)]) // scale to fit group width
@@ -80,7 +83,8 @@ export class MapComponent implements AfterContentInit {
       .append('filter')
       .attr('id', 'blur')
       .append('feGaussianBlur')
-      .attr('stdDeviation', 2);
+      .attr('stdDeviation', 2)
+      .call(zoom);
 
   }
 
@@ -151,5 +155,9 @@ export class MapComponent implements AfterContentInit {
       this.selectedCountry = null;
     }
     this.countryInfoCardShowing = !this.countryInfoCardShowing;
+  }
+
+  zoomed(g) {
+    g.attr('transform', d3.event.transform);
   }
 }

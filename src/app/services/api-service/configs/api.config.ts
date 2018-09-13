@@ -16,7 +16,7 @@ export const AVAILABLE_SERVICES = {
     METHOD: 'get',
     URL: `/api/mission?include=\
 country,mission_image,mission_image.thumbnail&filter%5Bcountry%5D%5Bcondition%5D%5Bpath%5D=\
-country.tid&filter%5Bcountry%5D%5Bcondition%5D%5Bvalue%5D={id}`
+country.tid&filter%5Bcountry%5D%5Bcondition%5D%5Bvalue%5D={id}&sort=-changed`
   },
   GET_MISSIONS_DATA: {
     METHOD: 'get',
@@ -25,6 +25,6 @@ Update%5D%5Bcondition%5D%5Bvalue%5D={id}&include=mission_assignment,image,image.
   },
   GET_WEATHER_DATA: {
     METHOD: 'get',
-    URL: `http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=981a67641076291487e85c0d1925cf9a`
+    URL: `/data/2.5/weather?lat={lat}&lon={lon}&appid=981a67641076291487e85c0d1925cf9a`
   }
 };

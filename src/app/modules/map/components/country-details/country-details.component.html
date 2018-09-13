@@ -1,0 +1,29 @@
+<div [ngStyle]="{'background-image': 'url(' + mainImage + ')'}" class="country-card-image-wrapper">
+  <div class="country-card-top">
+    <div class="country-continent">
+      <img *ngIf="country.flag_image" [src]="country.flag_image">
+      <h3>{{country.continent}}</h3>
+    </div>
+    <h1>{{country.name}}</h1>
+  </div>
+  <div class="country-card-bottom">
+    <div class="country-card--bottom-left">
+      <ng-container *ngIf="country.statArr">
+        <h3 class="subheader">Stats</h3>
+        <ul class="stat-list">
+          <li *ngFor="let stat of country.statArr">{{ stat }}</li>
+        </ul>
+      </ng-container>
+    </div>
+    <div class="country-card--bottom-right">
+      <h3 class="subheader">Missions</h3>
+      <div class="missions-container" malihu-scrollbar>
+        <div *ngFor="let mission of country.missions" class="item" (click)="loadItem(mission)">
+          <h1>{{mission.title}}</h1>
+          <h2>{{mission.subheadline}}</h2>
+          <p>Last updated: {{ mission.changed | date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

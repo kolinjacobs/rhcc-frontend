@@ -1,0 +1,33 @@
+<div class="close-btn back-button" (click)="back()"></div>
+<div class="mission-details">
+  <div class="mission-details-left">
+    <div [ngStyle]="{'background-image': 'url(' + mainImage + ')'}" class="country-card-image-wrapper">
+
+    </div>
+    <div class="mission-content">
+      <div class="mission-content-top">
+        <h1>{{selectedMission.title}}</h1>
+        <h3>{{selectedMission.subheadline}}</h3>
+      </div>
+      <div class="country-card-description" malihu-scrollbar>
+        <div [innerHTML]="selectedMission?.body?.value | safeHtml"></div>
+      </div>
+    </div>
+  </div>
+  <div class="mission-updates">
+    <h3 class="subheader">Latest Updates</h3>
+    <div [@appearIn] *ngIf="selectedMission.updates && selectedMission.updates.length > 0" class="missions-container" malihu-scrollbar>
+      <div *ngFor="let update of selectedMission.updates" class="item">
+        <div *ngIf="selectedMission">
+          <p>{{update.attributes.title}}</p>
+          <span>{{ update.attributes.changed | date }}</span>
+          <div [innerHTML]="update.attributes.body.value | safeHtml"></div>
+          <img *ngIf="update.attributes.image" [src]="update.attributes.image" />
+        </div>
+      </div>
+    </div>
+    <div class="missions-container" *ngIf="selectedMission.updates && selectedMission.updates.length === 0">
+      <p>Check back later for updates!</p>
+    </div>
+  </div>
+</div>
