@@ -12,6 +12,23 @@ import {
   templateUrl: './country-details.component.html',
   styleUrls: ['./country-details.component.scss'],
   animations: [
+    trigger('appearIn', [
+      state('in', style({ opacity: 1 })),
+      transition('void => *', [
+        animate('.5s', keyframes([
+          style({opacity: 0, transform: 'translateX(-100%)', offset: 0}),
+          style({opacity: 0.2, transform: 'translateX(5px)', offset: 0.8}),
+          style({opacity: 1, transform: 'translateX(0)', offset: 1.0})
+        ]))
+      ]),
+      transition('* => void', [
+        animate('.5s', keyframes([
+          style({opacity: 0, offset: 0}),
+          style({opacity: 0, offset: 0.8}),
+          style({opacity: 1, offset: 1.0})
+        ]))
+      ])
+    ])
     // trigger('listAnimation', [
     //   transition('* => *', [
     //     query(':enter', style({ opacity: 0 }), {optional: true}),

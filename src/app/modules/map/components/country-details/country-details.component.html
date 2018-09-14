@@ -1,4 +1,4 @@
-<div [ngStyle]="{'background-image': 'url(' + mainImage + ')'}" class="country-card-image-wrapper">
+<div [@appearIn] [ngStyle]="{'background-image': 'url(' + mainImage + ')'}" class="country-card-image-wrapper">
   <div class="country-card-top">
     <div class="country-continent">
       <img *ngIf="country.flag_image" [src]="country.flag_image">
