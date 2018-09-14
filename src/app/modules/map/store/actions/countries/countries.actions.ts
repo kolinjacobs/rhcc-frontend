@@ -8,6 +8,9 @@ export enum CountriesActionTypes {
   LOAD_COUNTRIES_DATA = '[COUNTRIES] LOAD_COUNTRIES_DATA',
   LOAD_COUNTRIES_DATA_FAIL = '[COUNTRIES] LOAD_COUNTRIES_DATA_FAIL',
   LOAD_COUNTRIES_DATA_SUCCESS = '[COUNTRIES] LOAD_COUNTRIES_DATA_SUCCESS',
+  LOAD_ALL_COUNTRIES_MISSIONS = '[COUNTRIES] LOAD_ALL_COUNTRIES_MISSIONS',
+  LOAD_ALL_COUNTRIES_MISSIONS_FAIL = '[COUNTRIES] LOAD_ALL_COUNTRIES_MISSIONS_FAIL',
+  LOAD_ALL_COUNTRIES_MISSIONS_SUCCESS = '[COUNTRIES] LOAD_ALL_COUNTRIES_MISSIONS_SUCCESS',
   LOAD_COUNTRIES_MISSIONS = '[COUNTRIES] LOAD_COUNTRIES_MISSIONS',
   LOAD_COUNTRIES_MISSIONS_FAIL = '[COUNTRIES] LOAD_COUNTRIES_MISSIONS_DATA_FAIL',
   LOAD_COUNTRIES_MISSIONS_SUCCESS = '[COUNTRIES] LOAD_COUNTRIES_MISSIONS_SUCCESS',
@@ -43,6 +46,21 @@ export class LoadCountryDataFail implements Action {
 
 export class LoadCountryDataSuccess implements Action {
   readonly type = CountriesActionTypes.LOAD_COUNTRIES_DATA_SUCCESS;
+  constructor(public payload: any) {}
+}
+
+export class LoadAllCountryMissions implements Action {
+  readonly type = CountriesActionTypes.LOAD_ALL_COUNTRIES_MISSIONS;
+  constructor() {}
+}
+
+export class LoadAllCountryMissionsFail implements Action {
+  readonly type = CountriesActionTypes.LOAD_ALL_COUNTRIES_MISSIONS_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class LoadAllCountryMissionsSuccess implements Action {
+  readonly type = CountriesActionTypes.LOAD_ALL_COUNTRIES_MISSIONS_SUCCESS;
   constructor(public payload: any) {}
 }
 
@@ -85,6 +103,9 @@ export type CountriesActions =
   | LoadCountryDataSuccess
   | LoadCountryMissions
   | LoadCountryMissionsFail
+  | LoadAllCountryMissions
+  | LoadAllCountryMissionsFail
+  | LoadAllCountryMissionsSuccess
   | LoadCountryMissionsSuccess
   | LoadCountryMissionsData
   | LoadCountryMissionsDataFail

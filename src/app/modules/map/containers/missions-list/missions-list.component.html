@@ -1,0 +1,15 @@
+<div class="country-list">
+  <h3 class="subheader">Countries</h3>
+  <ul malihu-scrollbar>
+    <li *ngFor="let country of countries">
+      <div class="country-item" (click)="selectCountry(country)">
+        <fa-icon style="color: #F1AE22;" icon="map-marker-alt"></fa-icon>
+        <div class="country-item-right">
+          <h3>{{ country.name }}</h3>
+          <p class="mission-count">{{ country.mission_count }} Missions</p>
+          <p *ngIf="country.continent" class="country-continent">{{ country.continent }}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,70 @@
+@import 'import';
+
+:host {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba($dark-blue, 0.8);
+  display: grid;
+  grid-template-rows: 120px 1fr 120px;
+  grid-template-columns: 20vw 1fr 20vw;
+}
+
+.country-list {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 1vh;
+
+  ul {
+    min-height: 1vh;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: rem(30px) 0;
+    border-bottom: 1px solid $subheader-font-color;
+  }
+}
+
+.country-item {
+  cursor: pointer;
+  display: flex;
+
+  fa-icon {
+    flex: 0 0 30px;
+    padding-top: rem(4px);
+  }
+
+  .country-item-right {
+    flex: 0 0 auto;
+  }
+
+  path {
+    fill: $yellow;
+  }
+
+  h3 {
+    font-size: rem(24px);
+    color: white;
+    font-weight: lighter;
+    margin: 0;
+  }
+
+  .mission-count {
+    font-size: rem(18px);
+    color: $light-blue;
+    margin: 0;
+  }
+
+  .country-continent {
+    font-size: rem(14px);
+    color: white;
+    margin: 0;
+  }
+}

@@ -38,6 +38,20 @@ export class CountriesEffects {
     );
 
   @Effect()
+  loadAllCountriesMissions$ = this.actions$
+    .ofType(fromCountries.CountriesActionTypes.LOAD_ALL_COUNTRIES_MISSIONS)
+    .pipe(
+      switchMap(() => {
+        return this.service.request(AVAILABLE_SERVICES.GET_ALL_MISSIONS).pipe(
+          map(countries => {
+            return new fromCountries.LoadAllCountryMissionsSuccess(countries);
+          }),
+          catchError(error => of (new fromCountries.LoadAllCountryMissionsFail(error)))
+        );
+      })
+    );
+
+  @Effect()
   loadCountriesMissions$ = this.actions$
     .ofType(fromCountries.CountriesActionTypes.LOAD_COUNTRIES_MISSIONS)
     .pipe(

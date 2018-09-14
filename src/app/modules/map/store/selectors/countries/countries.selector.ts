@@ -9,3 +9,4 @@ export const getCountriestate = createSelector(
 export const getCountriesLoaded = createSelector(getCountriestate, fromCountries.getCountriesLoading);
 export const getCountries = createSelector(getCountriestate, fromCountries.getCountries);
 
+export const getAllCountriesMissionsLoaded = createSelector(getCountriestate, fromCountries.getAllCountriesLoaded);

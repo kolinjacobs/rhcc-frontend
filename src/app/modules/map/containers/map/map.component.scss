@@ -1,4 +1,54 @@
+@import 'import';
+
 .app-logo {
   position: absolute;
   margin: 35px;
+  z-index: 5;
+}
+
+.type-toggle {
+  border: 1px solid white;
+  border-radius: rem(30px);
+  display: grid;
+  width: 254px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: rem(3px);
+  position: fixed;
+  right: rem(40px);
+  top: rem(40px);
+  z-index: 5;
+
+  a {
+    flex: 0 0 50%;
+    display: inline-block;
+    padding: 2px 15px;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+
+    &.selected {
+      color: $dark-blue;
+    }
+
+    fa-icon {
+      margin-right: rem(3px);
+    }
+  }
+
+  span {
+    border-radius: rem(30px);
+    position: absolute;
+    left: rem(2px);
+    top: rem(2px);
+    background: $yellow;
+    height: 89%;
+    width: 48%;
+    z-index: -1;
+    transition: all 0.2s ease;
+
+    &.show-list {
+      left: 50%;
+    }
+  }
 }

@@ -1,6 +1,12 @@
 <div>
   <img src="/assets/app-logo.svg" class="app-logo">
+  <div class="type-toggle">
+    <a [class.selected]="!showList" (click)="toggleList()"><fa-icon icon="map"></fa-icon>Map</a>
+    <a [class.selected]="showList" (click)="toggleList()"><fa-icon icon="list"></fa-icon>List</a>
+    <span [class.show-list]="showList"></span>
+  </div>
   <rh-mission-info [stats]="missionStats"></rh-mission-info>
+  <rh-missions-list (countrySelection)="selectFromRow($event)" *ngIf="showList && !selectedCountry"></rh-missions-list>
   <svg attr.height.px="{{innerHeight}}" attr.width="{{innerWidth}}px" class="map-holder" (click)="selectCountry($event)"></svg>
   <rh-country-info-card [country]="selectedCountry" [showing]="countryInfoCardShowing" (toggle)="toggleCountryInfoCard()" ></rh-country-info-card>
 </div>

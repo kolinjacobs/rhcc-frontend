@@ -7,6 +7,7 @@ export interface CountriesState {
   loaded: boolean;
   loading: boolean;
   data_loaded: boolean;
+  all_loaded: boolean;
   error: any;
 
 }
@@ -16,6 +17,7 @@ export const initialState: CountriesState = {
   loaded: false,
   loading: false,
   data_loaded: false,
+  all_loaded: false,
   error: undefined
 };
 
@@ -24,6 +26,7 @@ export const getCountries = (state: CountriesState) => {
 };
 
 export const getCountriesLoading = (state: CountriesState) => state && state.loaded;
+export const getAllCountriesLoaded = (state: CountriesState) => state && state.all_loaded;
 
 export function reducer(
   state = initialState,
@@ -122,15 +125,6 @@ export function reducer(
       };
     }
 
-    case fromActions.CountriesActionTypes.LOAD_COUNTRIES_DATA_FAIL: {
-      return {
-        ...state,
-        loaded: false,
-        loading: false,
-        error: action.payload
-      };
-    }
-
     case fromActions.CountriesActionTypes.LOAD_COUNTRIES_MISSIONS_SUCCESS: {
       const country = state.countries.find(x => x.tid === action.id);
 
@@ -156,6 +150,50 @@ export function reducer(
         ...state,
         loaded: true,
         loading: false,
+        countries
+      };
+    }
+
+    case fromActions.CountriesActionTypes.LOAD_ALL_COUNTRIES_MISSIONS: {
+      return {
+        ...state,
+        loading: true,
+        error: undefined
+      };
+    }
+
+    case fromActions.CountriesActionTypes.LOAD_ALL_COUNTRIES_MISSIONS_SUCCESS: {
+      const missionGroup = {};
+      action.payload.data.forEach(x => {
+        let mission = {...x.attributes};
+        let country_id = 0;
+        mission.changed = new Date(mission.changed * 1000);
+        if (x.relationships.mission_image.data) {
+          const id = x.relationships.mission_image.data.id;
+          const image_id = action.payload.included.find(i => i.id === id).relationships.field_image.data.id;
+          const image = action.payload.included.find(i => i.id === image_id).attributes.url;
+          mission = {...mission, mission_image: image};
+        }
+        if (x.relationships.country.data) {
+          const id = x.relationships.country.data.id;
+          country_id = action.payload.included.find(i => i.id === id).attributes.tid;
+          mission = {...mission, parent_id: country_id};
+        }
+        if (!missionGroup[country_id]) {
+          missionGroup[country_id] = [];
+        }
+        missionGroup[country_id] = [...missionGroup[country_id], mission];
+      });
+
+      const countries = state.countries.map(x => {
+        return {...x, missions: missionGroup[x.tid]};
+      });
+
+      return {
+        ...state,
+        loaded: true,
+        loading: false,
+        all_loaded: true,
         countries
       };
     }

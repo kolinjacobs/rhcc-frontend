@@ -21,6 +21,7 @@ export class MapComponent implements AfterContentInit {
   countryInfoCardShowing = false;
   selectedCountry: Country;
   missionStats: {missionaries: number, countries: number} = {missionaries: 0, countries: 0};
+  showList = false;
 
   constructor(private store: Store<fromStore.SharedState>) { }
 
@@ -28,7 +29,7 @@ export class MapComponent implements AfterContentInit {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
     // new syntax for selectors
-    this.store.pipe( select(fromStore.getAllMapData)).subscribe( mapData => {
+    this.store.pipe(select(fromStore.getAllMapData)).subscribe( mapData => {
       if (mapData) {
         this.renderMap(mapData);
       } else {
@@ -130,7 +131,6 @@ export class MapComponent implements AfterContentInit {
 
   addCountyPoints(countries: Country[]) {
     countries = countries.filter(c => c.mission_count > 0);
-    console.log(countries);
     let missionaries = 0;
     let countries_count = 0;
     countries.forEach( c => {
@@ -150,6 +150,11 @@ export class MapComponent implements AfterContentInit {
     }
   }
 
+  selectFromRow(country) {
+    this.selectedCountry = country;
+    this.toggleCountryInfoCard();
+  }
+
   toggleCountryInfoCard() {
     if (this.countryInfoCardShowing) {
       this.selectedCountry = null;
@@ -159,5 +164,9 @@ export class MapComponent implements AfterContentInit {
 
   zoomed(g) {
     g.attr('transform', d3.event.transform);
+  }
+
+  toggleList() {
+    this.showList = !this.showList;
   }
 }

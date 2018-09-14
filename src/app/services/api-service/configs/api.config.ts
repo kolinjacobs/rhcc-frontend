@@ -12,6 +12,10 @@ export const AVAILABLE_SERVICES = {
     METHOD: 'get',
     URL: '/api/taxonomy_term/country?include=flag,flag.field_image,country_image,country_image.field_image'
   },
+  GET_ALL_MISSIONS: {
+    METHOD: 'get',
+    URL: `/api/mission?_format=api_json&include=country,mission_image,mission_image.thumbnail&sort=-changed`
+  },
   GET_MISSIONS: {
     METHOD: 'get',
     URL: `/api/mission?include=\
