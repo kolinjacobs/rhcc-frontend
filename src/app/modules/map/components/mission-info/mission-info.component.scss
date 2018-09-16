@@ -6,43 +6,4 @@
   flex-flow: column;
   bottom: 0px;
   padding: 35px;
-
-  h3 {
-    font-weight: 300;
-    font-style: italic;
-    font-size: rem(18px);
-    color: #BBBDBF;
-    text-align: left;
-    margin: 0px;
-  }
-  .mission-info-stats {
-    display: flex;
-    h2 {
-      margin: 0px;
-      color: white;
-      font-weight: 300;
-      font-size: rem(18px);
-      color: #BBBDBF;
-      text-align: left;
-      margin-right: 45px;
-      span {
-        margin-right: 10px;
-        font-weight: bold;
-        font-size: rem(72px);
-        color: #BBBDBF;
-        text-align: left;
-      }
-
-      &:first-child:after {
-        content: '';
-        width: 1px;
-        background: #BBBDBF;
-        height: 50%;
-        display: inline-block;
-        position: absolute;
-        top: 30%;
-        margin: rem-calc(0 20px 0 20px);
-      }
-    }
-  }
 }

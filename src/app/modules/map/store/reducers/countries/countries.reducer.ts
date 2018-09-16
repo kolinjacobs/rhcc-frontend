@@ -91,7 +91,11 @@ export function reducer(
         const relationships = data.find( c => c.id === x.uuid).relationships;
         const tid = data.find( c => c.id === x.uuid).attributes.tid;
         if (contry.stats) {
-          contry.statArr = contry.stats.split('\\').filter(i => i !== '');
+          const split = contry.stats.split('\\').filter(i => i !== '');
+          contry.statArr = split.map(stat => {
+            const splData = stat.split(':');
+            return { label: splData[0], stat: splData[1] };
+          });
         }
         let country_image: string;
         if (relationships.country_image.data) {

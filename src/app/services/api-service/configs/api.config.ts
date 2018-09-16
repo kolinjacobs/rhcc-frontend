@@ -29,6 +29,6 @@ Update%5D%5Bcondition%5D%5Bvalue%5D={id}&include=mission_assignment,image,image.
   },
   GET_WEATHER_DATA: {
     METHOD: 'get',
-    URL: `/data/2.5/weather?lat={lat}&lon={lon}&appid=981a67641076291487e85c0d1925cf9a`
+    URL: `/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=981a67641076291487e85c0d1925cf9a`
   }
 };

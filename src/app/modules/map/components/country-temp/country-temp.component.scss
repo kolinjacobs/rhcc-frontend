@@ -1,0 +1,19 @@
+@import 'import';
+
+.mission-info-stats {
+  color: white;
+
+  h2 {
+    color: white;
+    font-weight: bold;
+    font-size: rem(40px);
+
+    span {
+      color: white;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}

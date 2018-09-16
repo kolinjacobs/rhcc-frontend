@@ -9,11 +9,14 @@
   <div class="country-card-bottom">
     <div class="country-card--bottom-left">
       <ng-container *ngIf="country.statArr">
-        <h3 class="subheader">Stats</h3>
-        <ul class="stat-list">
-          <li *ngFor="let stat of country.statArr">{{ stat }}</li>
-        </ul>
+        <div>
+          <h3 class="subheader">Stats</h3>
+          <ul class="stat-list">
+            <li *ngFor="let stat of country.statArr"><span>{{ stat.label }}</span>{{ stat.stat }}</li>
+          </ul>
+        </div>
       </ng-container>
+      <rh-country-temp [countryName]="country.name" [lat]="country.geolocation[1]" [lon]="country.geolocation[0]"></rh-country-temp>
     </div>
     <div class="country-card--bottom-right">
       <h3 class="subheader">Missions</h3>

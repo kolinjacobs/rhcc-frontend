@@ -24,7 +24,7 @@ export class MissionsListComponent implements OnInit {
 
     this.store.pipe(select(fromStore.getCountries)).subscribe(countries => {
       if (this.allLoaded) {
-        this.countries = countries;
+        this.countries = countries.filter(country => country.mission_count > 0);
       }
     });
   }
