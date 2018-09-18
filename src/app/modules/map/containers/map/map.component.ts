@@ -32,9 +32,11 @@ export class MapComponent implements AfterContentInit {
   ngAfterContentInit() {
     this.startIdle();
     this.store.pipe(select(fromStore.selectIsIdle)).subscribe(idle => {
-      if (idle && this.countryInfoCardShowing) {
+      if (idle) {
         this.showList = false;
-        this.countryInfoCardComponent.toggleCard();
+        if (this.countryInfoCardShowing) {
+          this.countryInfoCardComponent.toggleCard();
+        }
       }
     });
     this.innerWidth = window.innerWidth;
