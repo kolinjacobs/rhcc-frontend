@@ -46,9 +46,13 @@ export class CountryDetailsComponent implements OnInit {
   @Input() country: Country;
   @Input() mainImage: string;
   @Output() selectItem: EventEmitter<any> = new EventEmitter();
+  loading = true;
   constructor() { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 
   loadItem(mission) {

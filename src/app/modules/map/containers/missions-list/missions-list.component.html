@@ -1,6 +1,6 @@
 <div class="country-list">
   <h3 class="subheader">Countries</h3>
-  <ul malihu-scrollbar>
+  <ul malihu-scrollbar *ngIf="countries">
     <li *ngFor="let country of countries">
       <div class="country-item" (click)="selectCountry(country)">
         <fa-icon style="color: #F1AE22;" icon="map-marker-alt"></fa-icon>
@@ -12,4 +12,5 @@
       </div>
     </li>
   </ul>
+  <rh-loader *ngIf="!countries"></rh-loader>
 </div>

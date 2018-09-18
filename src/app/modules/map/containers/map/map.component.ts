@@ -1,9 +1,12 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import { AfterContentInit, Component, Host, HostListener, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as fromStore from './../../store';
 import * as d3 from 'd3';
 import * as d3geo from 'd3-geo';
 import {Country} from '../../models/country.model';
+import { Observable } from 'rxjs';
+import { ViewChild } from '@angular/core';
+import { CountryInfoCardComponent } from '../../components/country-info-card/country-info-card.component';
 
 @Component({
   selector: 'rh-map',
@@ -22,10 +25,18 @@ export class MapComponent implements AfterContentInit {
   selectedCountry: Country;
   missionStats: {missionaries: number, countries: number} = {missionaries: 0, countries: 0};
   showList = false;
+  @ViewChild(CountryInfoCardComponent) countryInfoCardComponent;
 
   constructor(private store: Store<fromStore.SharedState>) { }
 
   ngAfterContentInit() {
+    this.startIdle();
+    this.store.pipe(select(fromStore.selectIsIdle)).subscribe(idle => {
+      if (idle && this.countryInfoCardShowing) {
+        this.showList = false;
+        this.countryInfoCardComponent.toggleCard();
+      }
+    });
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
     // new syntax for selectors
@@ -46,13 +57,15 @@ export class MapComponent implements AfterContentInit {
         }
         this.countries = countrieState.countries;
         if (this.selectedCountry) {
-          console.log('test');
           this.selectedCountry = {...this.countries.find(x => x.tid === this.selectedCountry.tid)};
-          console.log(this.selectedCountry);
         }
         this.addCountyPoints(this.countries);
       }
     });
+  }
+
+  startIdle() {
+    this.store.dispatch(new fromStore.ExtendIdleTime());
   }
 
   renderMap(data) {
@@ -193,5 +206,12 @@ export class MapComponent implements AfterContentInit {
 
   toggleList() {
     this.showList = !this.showList;
+  }
+
+  @HostListener('touchstart', ['$event'])
+  @HostListener('mousedown', ['$event'])
+  onStart(event) {
+    this.store.dispatch(new fromStore.NotIdle());
+    this.store.dispatch(new fromStore.ExtendIdleTime());
   }
 }
