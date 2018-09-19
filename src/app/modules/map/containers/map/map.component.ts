@@ -25,6 +25,7 @@ export class MapComponent implements AfterContentInit {
   selectedCountry: Country;
   missionStats: {missionaries: number, countries: number} = {missionaries: 0, countries: 0};
   showList = false;
+  addedMap = false;
   @ViewChild(CountryInfoCardComponent) countryInfoCardComponent;
 
   constructor(private store: Store<fromStore.SharedState>) { }
@@ -44,7 +45,10 @@ export class MapComponent implements AfterContentInit {
     // new syntax for selectors
     this.store.pipe(select(fromStore.getAllMapData)).subscribe( mapData => {
       if (mapData) {
-        this.renderMap(mapData);
+        if (!this.addedMap) {
+          this.renderMap(mapData);
+          this.addedMap = true;
+        }
       } else {
         this.store.dispatch(new fromStore.LoadMapData({}));
       }
