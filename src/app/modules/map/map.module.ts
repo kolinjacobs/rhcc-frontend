@@ -8,6 +8,7 @@ import * as fromContainer from './containers';
 import * as fromComponents from './components';
 import { SafeHtmlPipe } from '../../pipes/safeHtml/safe-html.pipe';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { SlideshowModule } from 'ng-simple-slideshow';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -17,6 +18,7 @@ library.add(fas);
   imports: [
     CommonModule,
     MalihuScrollbarModule.forRoot(),
+    SlideshowModule,
     FontAwesomeModule,
     StoreModule.forFeature('map', reducers),
     EffectsModule.forFeature(effects),

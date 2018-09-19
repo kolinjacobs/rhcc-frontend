@@ -29,6 +29,7 @@
   background-size: cover;
   background-position: center;
   position: relative;
+  grid-template-rows: 100%;
 
   &:after {
     content: '';

@@ -1,8 +1,15 @@
 <div class="close-btn back-button" (click)="back()"></div>
 <div class="mission-details">
   <div class="mission-details-left">
-    <div [ngStyle]="{'background-image': 'url(' + mainImage + ')'}" class="country-card-image-wrapper">
-
+    <div *ngIf="!selectedMission.mission_images || selectedMission.mission_images.length === 1" [ngStyle]="{'background-image': 'url(' + mainImage + ')'}" class="country-card-image-wrapper">
+    </div>
+    <div *ngIf="selectedMission.mission_images && selectedMission.mission_images.length > 1" class="country-card-image-wrapper">
+      <slideshow
+              [imageUrls]="selectedMission.mission_images"
+              [autoPlay]="true"
+              [lazyLoad]="selectedMission.mission_images?.length > 1"
+              [autoPlayWaitForLazyLoad]="true"
+      ></slideshow>
     </div>
     <div class="mission-content">
       <div class="mission-content-top">

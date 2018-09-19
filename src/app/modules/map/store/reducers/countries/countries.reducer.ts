@@ -135,7 +135,13 @@ export function reducer(
       const missions = action.payload.data.map(x => {
         let mission = {...x.attributes};
         mission.changed = new Date(mission.changed * 1000);
-        if (x.relationships.mission_image.data) {
+        if (x.relationships.mission_image.data && Array.isArray(x.relationships.mission_image.data)) {
+          const ids = x.relationships.mission_image.data.map(image => image.id);
+          const image_ids = ids.map(id => action.payload.included.find(i => i.id === id).relationships.field_image.data.id);
+          const images = image_ids.map(image_id => action.payload.included.find(i => i.id === image_id).attributes.url);
+          // Keeping the mission_image for fallback.
+          mission = {...mission, mission_images: images, mission_image: images[0]};
+        } else if (x.relationships.mission_image.data) {
           const id = x.relationships.mission_image.data.id;
           const image_id = action.payload.included.find(i => i.id === id).relationships.field_image.data.id;
           const image = action.payload.included.find(i => i.id === image_id).attributes.url;
