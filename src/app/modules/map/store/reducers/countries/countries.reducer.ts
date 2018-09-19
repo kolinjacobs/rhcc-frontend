@@ -99,15 +99,21 @@ export function reducer(
         }
         let country_image: string;
         if (relationships.country_image.data) {
-          const country_image_id = included.find( r => r.id === relationships.country_image.data.id).relationships.field_image.data.id;
-          country_image  = included.find( r => r.id === country_image_id).attributes.url;
-          contry = { ...contry, country_image };
+          const related = included.find( r => r.id === relationships.country_image.data.id);
+          if (related) {
+            const country_image_id = related.relationships.field_image.data.id;
+            country_image = included.find(r => r.id === country_image_id).attributes.url;
+            contry = {...contry, country_image};
+          }
         }
         let flag_image: string;
         if (relationships.flag.data) {
-          const flag_image_id = included.find( r => r.id === relationships.flag.data.id).relationships.field_image.data.id;
-          flag_image = included.find( r => r.id === flag_image_id).attributes.url;
-          contry = { ...contry, flag_image };
+          const related = included.find( r => r.id === relationships.flag.data.id);
+          if (related) {
+            const flag_image_id = related.relationships.field_image.data.id;
+            flag_image = included.find(r => r.id === flag_image_id).attributes.url;
+            contry = {...contry, flag_image};
+          }
         }
         return {...contry, tid};
       });
@@ -137,10 +143,12 @@ export function reducer(
         mission.changed = new Date(mission.changed * 1000);
         if (x.relationships.mission_image.data && Array.isArray(x.relationships.mission_image.data)) {
           const ids = x.relationships.mission_image.data.map(image => image.id);
-          const image_ids = ids.map(id => action.payload.included.find(i => i.id === id).relationships.field_image.data.id);
-          const images = image_ids.map(image_id => action.payload.included.find(i => i.id === image_id).attributes.url);
-          // Keeping the mission_image for fallback.
-          mission = {...mission, mission_images: images, mission_image: images[0]};
+          if (ids && ids.length > 0) {
+            const image_ids = ids.map(id => action.payload.included.find(i => i.id === id).relationships.field_image.data.id);
+            const images = image_ids.map(image_id => action.payload.included.find(i => i.id === image_id).attributes.url);
+            // Keeping the mission_image for fallback.
+            mission = {...mission, mission_images: images, mission_image: images[ 0 ]};
+          }
         } else if (x.relationships.mission_image.data) {
           const id = x.relationships.mission_image.data.id;
           const image_id = action.payload.included.find(i => i.id === id).relationships.field_image.data.id;
@@ -178,12 +186,22 @@ export function reducer(
         let mission = {...x.attributes};
         let country_id = 0;
         mission.changed = new Date(mission.changed * 1000);
-        if (x.relationships.mission_image.data) {
+        // Put this in another function.
+        if (x.relationships.mission_image.data && Array.isArray(x.relationships.mission_image.data)) {
+          const ids = x.relationships.mission_image.data.map(image => image.id);
+          if (ids && ids.length > 0) {
+            const image_ids = ids.map(id => action.payload.included.find(i => i.id === id).relationships.field_image.data.id);
+            const images = image_ids.map(image_id => action.payload.included.find(i => i.id === image_id).attributes.url);
+            // Keeping the mission_image for fallback.
+            mission = {...mission, mission_images: images, mission_image: images[ 0 ]};
+          }
+        } else if (x.relationships.mission_image.data) {
           const id = x.relationships.mission_image.data.id;
           const image_id = action.payload.included.find(i => i.id === id).relationships.field_image.data.id;
           const image = action.payload.included.find(i => i.id === image_id).attributes.url;
           mission = {...mission, mission_image: image};
         }
+
         if (x.relationships.country.data) {
           const id = x.relationships.country.data.id;
           country_id = action.payload.included.find(i => i.id === id).attributes.tid;

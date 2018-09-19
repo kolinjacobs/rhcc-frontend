@@ -45,10 +45,7 @@ export class MapComponent implements AfterContentInit {
     // new syntax for selectors
     this.store.pipe(select(fromStore.getAllMapData)).subscribe( mapData => {
       if (mapData) {
-        if (!this.addedMap) {
-          this.renderMap(mapData);
-          this.addedMap = true;
-        }
+        this.renderMap(mapData);
       } else {
         this.store.dispatch(new fromStore.LoadMapData({}));
       }
@@ -65,7 +62,10 @@ export class MapComponent implements AfterContentInit {
         if (this.selectedCountry) {
           this.selectedCountry = {...this.countries.find(x => x.tid === this.selectedCountry.tid)};
         }
-        this.addCountyPoints(this.countries);
+        if (!this.addedMap) {
+          this.addCountyPoints(this.countries);
+          this.addedMap = true;
+        }
       }
     });
   }
@@ -75,6 +75,10 @@ export class MapComponent implements AfterContentInit {
   }
 
   renderMap(data) {
+    if (this.addedMap) {
+      return;
+    }
+
     const zoom = d3.zoom()
       .scaleExtent([1, 10])
       .on('zoom', this.zoomed);
@@ -109,6 +113,10 @@ export class MapComponent implements AfterContentInit {
   }
 
   renderPoints() {
+    if (this.addedMap) {
+      return;
+    }
+
     this.svg
       .selectAll('circle')
       .data([...this.points]).enter()
@@ -124,7 +132,7 @@ export class MapComponent implements AfterContentInit {
       .attr('name', (d) => d.name)
       .attr('class', 'outer-circle')
       .attr('type', 'mission')
-      .attr('opacity', 0.15)
+      .attr('opacity', 0.25)
       .append('animate')
       .attr('attributeName', 'r')
       .attr('values', (d) => `${Math.max(16, (16 * (d.count / 3)))}; ${Math.max(16, (16 * (d.count / 3))) + 5}; ${Math.max(16, (16 * (d.count / 3)))};`)
@@ -149,7 +157,7 @@ export class MapComponent implements AfterContentInit {
       .attr('name', (d) => d.name)
       .attr('class', 'medium-circle')
       .attr('type', 'mission')
-      .attr('opacity', 0.25)
+      .attr('opacity', 0.5)
       .append('animate')
       .attr('attributeName', 'r')
       .attr('values', (d) => `${Math.max(12, (14 * (d.count / 3)))}; ${Math.max(12, (14 * (d.count / 3))) + 3}; ${Math.max(12, (14 * (d.count / 3)))}`)
@@ -170,7 +178,7 @@ export class MapComponent implements AfterContentInit {
       .attr('fill', '#EBA313')
       .attr('name', (d) => d.name)
       .attr('type', 'mission')
-      .attr('opacity', 0.5);
+      .attr('opacity', 0.8);
   }
 
   addCountyPoints(countries: Country[]) {
