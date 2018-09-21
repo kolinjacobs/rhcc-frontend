@@ -9,7 +9,7 @@ import { Observable, of, timer } from 'rxjs/index';
 export class ApplicationEffects {
 
   // 3 minute timeout
-  APPLICATION_TIMEOUT_TIME = (1000 * 60) * 3;
+  APPLICATION_TIMEOUT_TIME = (1000 * 60) * 2;
   // APPLICATION_TIMEOUT_TIME = 1000 * 10;
 
   @Effect()

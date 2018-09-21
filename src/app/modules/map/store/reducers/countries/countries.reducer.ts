@@ -1,5 +1,4 @@
 import * as fromActions from '../../actions/countries/countries.actions';
-import { Store } from '@ngrx/store';
 import {Country} from '../../../models/country.model';
 
 export interface CountriesState {
