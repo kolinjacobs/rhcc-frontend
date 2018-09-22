@@ -31,6 +31,7 @@ export class MapComponent implements AfterContentInit {
   constructor(private store: Store<fromStore.SharedState>) { }
 
   ngAfterContentInit() {
+    // Idle reset
     this.startIdle();
     this.store.pipe(select(fromStore.selectIsIdle)).subscribe(idle => {
       if (idle) {
@@ -40,6 +41,16 @@ export class MapComponent implements AfterContentInit {
         }
       }
     });
+
+    // Page refresh
+    this.store.pipe(select(fromStore.selectRefresh)).subscribe(refresh => {
+      if (!refresh) {
+        this.store.dispatch(new fromStore.PageRefresh(false));
+      } else {
+        location.reload();
+      }
+    });
+
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
     // new syntax for selectors
@@ -220,6 +231,10 @@ export class MapComponent implements AfterContentInit {
 
   toggleList() {
     this.showList = !this.showList;
+  }
+
+  reloadPage() {
+    location.reload();
   }
 
   @HostListener('touchstart', ['$event'])

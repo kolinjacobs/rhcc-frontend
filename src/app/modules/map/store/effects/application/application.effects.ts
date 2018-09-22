@@ -10,7 +10,8 @@ export class ApplicationEffects {
 
   // 3 minute timeout
   APPLICATION_TIMEOUT_TIME = (1000 * 60) * 2;
-  // APPLICATION_TIMEOUT_TIME = 1000 * 10;
+  // Hour refresh timeout
+  PAGE_REFRESH_TIMEOUT = (1000 * 60) * 60;
 
   @Effect()
   extendApplicationTimeout$ = this.actions$
@@ -21,6 +22,18 @@ export class ApplicationEffects {
       }),
       map(() => {
         return new fromApplication.Idle();
+      })
+    );
+
+  @Effect()
+  reloadPageTimeoutTimeout$ = this.actions$
+    .ofType(fromApplication.ApplicationActionTypes.PAGE_REFRESH_TIME)
+    .pipe(
+      switchMap( ( action: Action ) => {
+        return timer(this.PAGE_REFRESH_TIMEOUT);
+      }),
+      map(() => {
+        return new fromApplication.NeedRefresh(true);
       })
     );
 

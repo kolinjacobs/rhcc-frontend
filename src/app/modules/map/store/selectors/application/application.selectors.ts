@@ -7,3 +7,4 @@ export const getApplicationState = createSelector(
   fromFeature.getSharedState, (state: fromFeature.SharedState) => state && state.application);
 
 export const selectIsIdle = createSelector(getApplicationState, fromApplication.getIdleState);
+export const selectRefresh = createSelector(getApplicationState, fromApplication.getRefreshState);
