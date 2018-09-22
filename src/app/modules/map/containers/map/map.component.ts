@@ -48,6 +48,8 @@ export class MapComponent implements AfterContentInit {
         this.store.dispatch(new fromStore.PageRefresh(false));
       } else {
         location.reload();
+        // this.store.dispatch(new fromStore.LoadCountries({}));
+        // this.store.dispatch(new fromStore.PageRefresh(false));
       }
     });
 

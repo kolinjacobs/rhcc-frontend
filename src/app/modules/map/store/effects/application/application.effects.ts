@@ -12,6 +12,7 @@ export class ApplicationEffects {
   APPLICATION_TIMEOUT_TIME = (1000 * 60) * 2;
   // Hour refresh timeout
   PAGE_REFRESH_TIMEOUT = (1000 * 60) * 60;
+  // PAGE_REFRESH_TIMEOUT = (1000 * 20);
 
   @Effect()
   extendApplicationTimeout$ = this.actions$
