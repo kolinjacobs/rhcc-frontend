@@ -15,11 +15,13 @@ body {
   font-family: 'Open Sans', sans-serif;
   height: 100%;
   overflow: hidden;
+  touch-action: none;
 }
 
-//html {
-//  font-size: 1vw;
-//}
+html {
+  //font-size: 1vw;
+  touch-action: none;
+}
 
 
 p {
